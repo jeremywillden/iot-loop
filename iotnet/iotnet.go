@@ -39,6 +39,7 @@ func ListenForToken(portnum int, tokenchan chan bool) {
 	}
 	for running {
 		conn, err := rxsocket.Accept()
+		defer conn.Close()
 		if err != nil {
 			running = false
 		}
@@ -56,4 +57,5 @@ func receiveToken(conn net.Conn, tokenchan chan bool) {
 		}
 	}
 	tokenchan <- false
+	conn.Close()
 }
