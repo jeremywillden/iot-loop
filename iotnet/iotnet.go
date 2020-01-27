@@ -57,7 +57,7 @@ func PassToken(passto string, portnum int) (passed bool) {
 	if err == nil {
 		fmt.Fprintf(conn, "TOKEN\r\n")
 		response, err := bufio.NewReader(conn).ReadString('\n')
-		if err != nil {
+		if err == nil {
 			if strings.Contains(response, "OK") {
 				return true
 			}
