@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"constellationlabs.com/iotloop/iotnet"
 	"constellationlabs.com/iotloop/ledcontrol"
@@ -11,6 +12,8 @@ func main() {
 	fmt.Println(iotnet.Myname())
 	c := make(chan bool)
 	go iotnet.ListenForToken(2468, c)
+	timeout := make(chan bool, 1)
+	go waittimeout(timeout)
 	running := true
 	for running {
 		select {
@@ -25,6 +28,14 @@ func main() {
 					ledcontrol.SetLeds(offcolors)
 				}
 			}
+		case <-timeout:
+			fmt.Println("timeout complete, exiting")
+			running = false
 		}
 	}
+}
+
+func waittimeout(timeoutchan chan bool) {
+	time.Sleep(10 * time.Second)
+	timeoutchan <- true
 }
