@@ -20,8 +20,8 @@ func Myname() string {
 
 // GetNextHop looks up this device hostname and uses it to find the IP address of the next device
 func GetNextHop() string {
-	nexthops := map[string]string{
-		"pi-cluster-00": "10.0.1.61",
+	/*	nexthops := map[string]string{
+		"pi-cluster-00": "10.0.1.61", // pi-cluster-00 is 10.0.1.60, never receives
 		"pi-cluster-01": "10.0.1.62",
 		"pi-cluster-02": "10.0.1.63",
 		"pi-cluster-03": "10.0.1.64",
@@ -46,6 +46,33 @@ func GetNextHop() string {
 		"pi-cluster-22": "10.0.1.83",
 		"pi-cluster-23": "10.0.1.84",
 		"pi-cluster-24": "10.0.1.61",
+	} */
+	nexthops := map[string]string{
+		"pi-cluster-00": "10.100.205.101", // pi-cluster-00 is 10.100.205.100, never receives
+		"pi-cluster-01": "10.100.205.102",
+		"pi-cluster-02": "10.100.205.103",
+		"pi-cluster-03": "10.100.205.104",
+		"pi-cluster-04": "10.100.205.105",
+		"pi-cluster-05": "10.100.205.106",
+		"pi-cluster-06": "10.100.205.107",
+		"pi-cluster-07": "10.100.205.108",
+		"pi-cluster-08": "10.100.205.109",
+		"pi-cluster-09": "10.100.205.110",
+		"pi-cluster-10": "10.100.205.111",
+		"pi-cluster-11": "10.100.205.112",
+		"pi-cluster-12": "10.100.205.113",
+		"pi-cluster-13": "10.100.205.114",
+		"pi-cluster-14": "10.100.205.115",
+		"pi-cluster-15": "10.100.205.116",
+		"pi-cluster-16": "10.100.205.117",
+		"pi-cluster-17": "10.100.205.118",
+		"pi-cluster-18": "10.100.205.119",
+		"pi-cluster-19": "10.100.205.120",
+		"pi-cluster-20": "10.100.205.121",
+		"pi-cluster-21": "10.100.205.122",
+		"pi-cluster-22": "10.100.205.123",
+		"pi-cluster-23": "10.100.205.124",
+		"pi-cluster-24": "10.100.205.102",
 	}
 	return nexthops[Myname()]
 }
