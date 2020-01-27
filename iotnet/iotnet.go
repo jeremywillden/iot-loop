@@ -1,4 +1,4 @@
-package iotloop
+package iotnet
 
 import (
 	"bufio"
