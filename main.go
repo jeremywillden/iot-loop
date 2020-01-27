@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	fmt.Println(iotnet.Hello())
+	fmt.Println(iotnet.Myname())
 	c := make(chan bool)
 	go iotnet.ListenForToken(2468, c)
 	running := true
@@ -16,10 +16,10 @@ func main() {
 		select {
 		case rxok := <-c:
 			if rxok {
-				fmt.Println("token received")
-				newcolors := []uint32{0x220000, 0x002200} // using GGRRBB color ordering
+				fmt.Println("token received, passing to " + iotnet.GetNextHop())
+				newcolors := []uint32{0x110000, 0x001100} // using GGRRBB color ordering
 				ledcontrol.SetLeds(newcolors)
-				if iotnet.PassToken("10.0.1.60", 2468) {
+				if iotnet.PassToken(iotnet.GetNextHop(), 2468) {
 					fmt.Println("token passed")
 					offcolors := []uint32{0x000000, 0x000000} // using GGRRBB color ordering
 					ledcontrol.SetLeds(offcolors)
